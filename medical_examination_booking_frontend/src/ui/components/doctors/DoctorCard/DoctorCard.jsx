@@ -9,6 +9,7 @@ import EditDoctorDialog from "../EditDoctorDialog/EditDoctorDialog.jsx";
 import ReserveDialog from "../ReserveDialog/ReserveDialog.jsx"
 import DeleteDoctorDialog from "../DeleteDoctorDialog/DeleteDoctorDialog.jsx";
 import {useUser} from "../../../../context/UserContext.jsx";
+import {useKeycloak} from "@react-keycloak/web";
 
 
 const DoctorCard = ({doctor, onEdit, onDelete}) => {
@@ -16,10 +17,15 @@ const DoctorCard = ({doctor, onEdit, onDelete}) => {
     // const [editDoctorDialogOpen, setEditDoctorDialogOpen] = useState(false);
     // const [deleteDoctorDialogOpen, setDeleteDoctorDialogOpen] = useState(false);
     const [reserveDialogOpen, setReserveDialogOpen] = useState(false);
-    const { user } = useUser();
+    // const {user} = useUser();
+    //
+    // const isPatient = user?.roles?.includes("PATIENT");
+    // const isDoctor = user?.roles?.includes("DOCTOR");
 
-    const isPatient = user.roles?.includes("PATIENT");
-    const isDoctor = user.roles?.includes("DOCTOR");
+    const { keycloak } = useKeycloak();
+    const roles = keycloak.tokenParsed?.realm_access?.roles || [];
+    const isPatient = roles.includes("PATIENT");
+    const isDoctor = roles.includes("DOCTOR");
 
     console.log(doctor)
 
@@ -30,9 +36,9 @@ const DoctorCard = ({doctor, onEdit, onDelete}) => {
                     {/*<Typography variant="h5">{doctor.name}</Typography>*/}
                     {/*<Typography variant="h5">{doctor.surname}</Typography>*/}
 
-                    <Typography variant="h5" sx={{ fontWeight: 700, mt: 1 }}>
-                        <Box component="span" sx={{ color: "text.secondary" }}>{doctor.name}</Box>{" "}
-                        <Box component="span" sx={{ color: "text.secondary" }}>{doctor.surname}</Box>
+                    <Typography variant="h5" sx={{fontWeight: 700, mt: 1}}>
+                        <Box component="span" sx={{color: "text.secondary"}}>{doctor.name}</Box>{" "}
+                        <Box component="span" sx={{color: "text.secondary"}}>{doctor.surname}</Box>
                     </Typography>
 
                     <Box display="flex" justifyContent="center" mt={2}>
@@ -50,7 +56,8 @@ const DoctorCard = ({doctor, onEdit, onDelete}) => {
                     </Box>
 
                     <Typography variant="h6" color="primary" style={{marginTop: 4}}>{doctor.type}</Typography>
-                    <Typography variant="h6" color="" style={{marginTop: 4}}><b>Price: </b>${doctor.examination_price}</Typography>
+                    <Typography variant="h6" color="" style={{marginTop: 4}}><b>Price: </b>${doctor.examination_price}
+                    </Typography>
 
                     {/*<Typography variant="subtitle2">*/}
                     {/*    Lorem ipsum dolor sit amet, consectetur adipisicing elit.*/}
@@ -58,18 +65,18 @@ const DoctorCard = ({doctor, onEdit, onDelete}) => {
                 </CardContent>
                 <CardActions sx={{justifyContent: "space-between"}}>
                     {isPatient && (
-                    <Button
-                        style={{marginLeft: 75}}
-                        variant="contained"
-                        size="medium"
-                        color="primary"
-                        startIcon={<SaveIcon/>}
-                        onClick={() => setReserveDialogOpen(true)}
-                        // onClick={() => navigate(`/doctors/${doctor.id}`)}
-                    >
-                        Reserve
-                    </Button>
-                        )}
+                        <Button
+                            style={{marginLeft: 75}}
+                            variant="contained"
+                            size="medium"
+                            color="primary"
+                            startIcon={<SaveIcon/>}
+                            onClick={() => setReserveDialogOpen(true)}
+                            // onClick={() => navigate(`/doctors/${doctor.id}`)}
+                        >
+                            Reserve
+                        </Button>
+                    )}
                     <Box>
                         {/*<Button*/}
                         {/*    size="small"*/}
@@ -104,12 +111,12 @@ const DoctorCard = ({doctor, onEdit, onDelete}) => {
             {/*    onDelete={onDelete}*/}
             {/*/>*/}
             {isPatient && (
-            <ReserveDialog
-                open={reserveDialogOpen}
-                onClose={() => setReserveDialogOpen(false)}
-                doctor={doctor}
-            />
-                )}
+                <ReserveDialog
+                    open={reserveDialogOpen}
+                    onClose={() => setReserveDialogOpen(false)}
+                    doctor={doctor}
+                />
+            )}
         </>
     );
 };
