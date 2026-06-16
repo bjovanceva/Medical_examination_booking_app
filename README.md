@@ -91,7 +91,7 @@
 ---
 
 ## Како да се стартува проектот (локално)
-1. **Клонирање го репозиторумот:**
+1. **Клонирање на репозиторумот:**
    - `git clone https://github.com/your-username/your-repo.git`
    - `cd your-repo`
 2. **Стартување на Keycloak преку Docker Compose:**
