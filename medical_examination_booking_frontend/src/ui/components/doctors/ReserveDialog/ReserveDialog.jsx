@@ -21,7 +21,7 @@ const ReserveDialog = ({ open, onClose, doctor }) => {
         const fetchTerms = async () => {
             try {
                 const response = await fetch(
-                    `http://localhost:9090/api/doctors/terms/${doctor.id}`,
+                    `http://localhost:9091/api/doctors/terms/${doctor.id}`,
                     {
                         headers: {
                             Authorization: `Bearer ${keycloak.token}`,
@@ -52,10 +52,10 @@ const ReserveDialog = ({ open, onClose, doctor }) => {
 
         console.log(term.whenDate)
         console.log(term.whenTime)
-        console.log("Calling:", `http://localhost:9090/api/examinationList/reserve/${doctor.id}`);
+        console.log("Calling:", `http://localhost:9091/api/examinationList/reserve/${doctor.id}`);
 
         try {
-            const response = await fetch(`http://localhost:9090/api/examinationList/reserve/${doctor.id}`, {
+            const response = await fetch(`http://localhost:9091/api/examinationList/reserve/${doctor.id}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

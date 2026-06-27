@@ -26,7 +26,7 @@ const useReservationList = () => {
 
             try {
                 const response = await axios.get(
-                    "http://localhost:9090/api/examinationList",
+                    "http://localhost:9091/api/examinationList",
                     {
                         headers: {
                             Authorization: `Bearer ${keycloak.token}`,

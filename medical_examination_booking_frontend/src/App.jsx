@@ -17,12 +17,11 @@ const App = () => {
     const { setUser } = useUser();
     const { keycloak, initialized } = useKeycloak();
 
-
     useEffect(() => {
         const fetchUser = async () => {
             if (initialized && keycloak?.authenticated) {
                 try {
-                    const response = await axios.get("http://localhost:9090/me", {
+                    const response = await axios.get("http://localhost:9091/me", {
                         headers: { Authorization: `Bearer ${keycloak.token}` },
                     });
                     setUser(response.data);
@@ -41,7 +40,6 @@ const App = () => {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Layout />}>
-                    {/*<Route index element={<DoctorsPage />} />*/}
                     <Route index element={<HomePage />} />
                     <Route path="home" element={<HomePage />} />
                     <Route path="doctors" element={<DoctorsPage />} />

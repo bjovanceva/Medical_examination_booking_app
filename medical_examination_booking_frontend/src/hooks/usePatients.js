@@ -15,9 +15,6 @@ const usePatients = () => {
         patientRepository
             .findAll(keycloak.token)
             .then((response) => {
-                // console.log(keycloak.token)
-                // console.log("Later parsed")
-                // console.log(keycloak.tokenParsed)
                 setState({
                     "patients": response.data,
                     "loading": false,

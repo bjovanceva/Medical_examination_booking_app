@@ -29,7 +29,7 @@ public class PaymentController {
             String clientId="";
             String clientSecret="";
 
-            // 1️⃣ Get access token
+
             String auth = Base64.getEncoder().encodeToString((clientId + ":" + clientSecret).getBytes());
             HttpHeaders headers = new HttpHeaders();
             headers.set("Authorization", "Basic " + auth);
@@ -44,7 +44,7 @@ public class PaymentController {
             String accessToken = (String) tokenResponse.get("access_token");
             System.out.println(request.get("amount"));
 
-            // 2️⃣ Create order
+
             HttpHeaders orderHeaders = new HttpHeaders();
             orderHeaders.set("Authorization", "Bearer " + accessToken);
             orderHeaders.setContentType(MediaType.APPLICATION_JSON);

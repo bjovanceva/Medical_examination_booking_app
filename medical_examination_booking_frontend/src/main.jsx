@@ -13,9 +13,7 @@ const eventLogger = (event, error) => {
     if (error) console.error('Keycloak error:', error);
 };
 
-
 createRoot(document.getElementById("root")).render(
-    // <StrictMode>
             <ReactKeycloakProvider
                 authClient={keycloak}
                 onEvent={eventLogger}
@@ -24,5 +22,4 @@ createRoot(document.getElementById("root")).render(
                     <App />
                 </UserProvider>
             </ReactKeycloakProvider>
-    // </StrictMode>
 );

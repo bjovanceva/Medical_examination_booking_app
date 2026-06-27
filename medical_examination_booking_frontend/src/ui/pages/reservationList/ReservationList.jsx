@@ -34,7 +34,7 @@ const ReservationList = () => {
 
         const fetchReservationList = async () => {
             try {
-                const res = await fetch("http://localhost:9090/api/examinationList", {
+                const res = await fetch("http://localhost:9091/api/examinationList", {
                     headers: { Authorization: `Bearer ${keycloak.token}` },
                 });
                 if (!res.ok) throw new Error("Network response was not ok");
@@ -62,13 +62,13 @@ const ReservationList = () => {
     // Stripe checkout
     const handleCheckout = async () => {
         try {
-            const response = await fetch("http://localhost:9090/api/checkout/create-checkout-session", {
+            const response = await fetch("http://localhost:9091/api/checkout/create-checkout-session", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${keycloak.token}`,
                 },
-                body: JSON.stringify({ amount: Math.round(getTotal() * 100) }), // Stripe expects cents
+                body: JSON.stringify({ amount: Math.round(getTotal() * 100) }),
             });
 
             if (!response.ok) throw new Error("Failed to create checkout session");
@@ -129,7 +129,7 @@ const ReservationList = () => {
                     <Box sx={{ mt: 2 }}>
                         <PayPalScriptProvider
                             options={{
-                                "client-id": "",
+                                "client-id": "AWg7jZuUKwwbHE36HispTqNyUas4JL27slAMOpFBYjxXzQihicy9eMfJscDQzkOqVD26auB18UN2JtM9",
                                 currency: "USD",
                             }}
                         >

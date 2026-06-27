@@ -37,13 +37,13 @@ public class CheckoutController {
 
     @PostMapping("/create-checkout-session")
     public Map<String, Object> createCheckoutSession(@RequestBody Map<String, Object> data) throws Exception {
-        Long amount = ((Number) data.get("amount")).longValue(); // in cents
+        Long amount = ((Number) data.get("amount")).longValue();
 
         SessionCreateParams params =
                 SessionCreateParams.builder()
                         .setMode(SessionCreateParams.Mode.PAYMENT)
-                        .setSuccessUrl("http://localhost:3000/success?session_id={CHECKOUT_SESSION_ID}") // frontend success page
-                        .setCancelUrl("http://localhost:3000/cancel")   // frontend cancel page
+                        .setSuccessUrl("http://localhost:3000/success?session_id={CHECKOUT_SESSION_ID}")
+                        .setCancelUrl("http://localhost:3000/cancel")
                         .addLineItem(
                                 SessionCreateParams.LineItem.builder()
                                         .setQuantity(1L)

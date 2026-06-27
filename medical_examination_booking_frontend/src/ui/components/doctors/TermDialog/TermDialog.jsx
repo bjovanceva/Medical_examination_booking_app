@@ -20,7 +20,7 @@ const TermDialog = ({ open, onClose, doctorUsername, onAdd }) => {
             const token = keycloak.token;
             console.log("Token:", token);
 
-            const response = await fetch(`http://localhost:9090/api/doctors/addNewTerm`, {
+            const response = await fetch(`http://localhost:9091/api/doctors/addNewTerm`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

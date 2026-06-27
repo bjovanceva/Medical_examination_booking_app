@@ -2,7 +2,6 @@ import React from "react";
 import { Box, Typography, Button, Card, CardContent, Chip } from "@mui/material";
 import { useNavigate } from "react-router";
 import { Favorite, HealthAndSafety, SportsHandball, LocalHospital, Psychology } from "@mui/icons-material";
-import keycloak from "../../../keycloak.js";
 
 export const HomePage = () => {
     const navigate = useNavigate();

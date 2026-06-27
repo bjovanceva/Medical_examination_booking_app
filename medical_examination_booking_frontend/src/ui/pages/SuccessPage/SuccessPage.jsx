@@ -27,7 +27,7 @@ export default function Success() {
                 const refreshed = await keycloak.updateToken(5);
                 if (!refreshed) console.log("Token is still valid");
 
-                const res = await fetch("http://localhost:9090/api/checkout/cleanList", {
+                const res = await fetch("http://localhost:9091/api/checkout/cleanList", {
                     method: "GET",
                     headers: { Authorization: `Bearer ${keycloak.token}` },
                 });
@@ -37,7 +37,7 @@ export default function Success() {
                 console.log("Temporary reservation list cleared!");
                 setLoading(false);
 
-                // optional: redirect to home after 5 seconds
+
                 setTimeout(() => navigate("/"), 5000);
 
             } catch (err) {
