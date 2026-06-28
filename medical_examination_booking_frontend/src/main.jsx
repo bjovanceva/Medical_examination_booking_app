@@ -16,6 +16,10 @@ const eventLogger = (event, error) => {
 createRoot(document.getElementById("root")).render(
             <ReactKeycloakProvider
                 authClient={keycloak}
+                initOptions={{
+                    onLoad: "login-required",
+                    checkLoginIframe: false,
+                }}
                 onEvent={eventLogger}
             >
                 <UserProvider>

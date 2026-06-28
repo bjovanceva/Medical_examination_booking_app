@@ -6,11 +6,4 @@ const keycloak = new Keycloak({
     clientId: 'medical-frontend',
 });
 
-keycloak.init({
-    onLoad: "login-required",
-    checkLoginIframe: false,
-}).then(authenticated => {
-    console.log("Authenticated:", authenticated);
-});
-
 export default keycloak;
